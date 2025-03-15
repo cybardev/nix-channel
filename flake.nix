@@ -21,10 +21,8 @@
         let
           pkgs = nixpkgs.legacyPackages.${system};
         in
-        {
-          default = pkgs.callPackage ./default.nix {
-            inherit pkgs;
-          };
+        import ./default.nix {
+          inherit pkgs;
         }
       );
     };
