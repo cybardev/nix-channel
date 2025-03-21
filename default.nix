@@ -5,7 +5,7 @@
 }:
 lib.makeScope pkgs.newScope (
   self:
-  pkgs.packagesFromDirectoryRecursive {
+  lib.packagesFromDirectoryRecursive {
     inherit (self) callPackage;
     directory = ./pkgs;
   }
