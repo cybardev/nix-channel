@@ -21,3 +21,5 @@ A Nix channel for my packages
 ### Flakes
 
 Honestly, I don't know. If you want to use flakes, you probably know much better than I do how to use this repository. Good luck~
+
+Though, I do use it myself this way: [github.com/cybardev/nix-dotfiles/blob/87ac41c/flake.nix#L24](<https://github.com/cybardev/nix-dotfiles/blob/87ac41c388b815ee771dc58023610b4eaf04463f/flake.nix#L24>)
