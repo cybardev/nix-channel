@@ -3,10 +3,7 @@
   lib ? pkgs.lib,
   ...
 }:
-lib.makeScope pkgs.newScope (
-  self:
-  lib.packagesFromDirectoryRecursive {
-    inherit (self) callPackage;
-    directory = ./pkgs;
-  }
-)
+lib.packagesFromDirectoryRecursive {
+  inherit (pkgs) callPackage;
+  directory = ./pkgs;
+}

@@ -1,5 +1,5 @@
 {
-  description = "A Nix flake for my packages";
+  description = "cybardev/nix-channel";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -19,10 +19,15 @@
       packages = forAllSystems (
         system:
         let
-          pkgs = nixpkgs.legacyPackages.${system};
+          pkgs = import nixpkgs { inherit system; };
+          cypkgs = import ./default.nix { inherit pkgs; };
         in
-        import ./default.nix {
-          inherit pkgs;
+        cypkgs
+        // {
+          default = pkgs.symlinkJoin {
+            name = "cypkgs";
+            paths = builtins.filter pkgs.lib.isDerivation (builtins.attrValues cypkgs);
+          };
         }
       );
     };
