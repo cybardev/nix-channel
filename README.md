@@ -3,7 +3,7 @@
 A Nix channel for my packages
 
 > [!NOTE]
-> See [default.nix](./default.nix) for list of available packages.
+> See [pkgs/](./pkgs) for list of available packages.
 
 ## Usage
 
