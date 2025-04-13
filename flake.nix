@@ -8,18 +8,13 @@
   outputs =
     { nixpkgs, ... }:
     let
-      forAllSystems = nixpkgs.lib.genAttrs [
-        "aarch64-darwin"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "x86_64-linux"
-      ];
+      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
     in
     {
       packages = forAllSystems (
         system:
         let
-          pkgs = import nixpkgs { inherit system; };
+          pkgs = nixpkgs.legacyPackages."${system}";
           cypkgs = import ./default.nix { inherit pkgs; };
         in
         cypkgs
