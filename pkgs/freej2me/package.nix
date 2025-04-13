@@ -48,7 +48,7 @@ stdenvNoCC.mkDerivation {
 
   postInstall = with pkgs; ''
     wrapProgram "$out/bin/${pname}" \
-      --prefix PATH : ${lib.makeBinPath ([ zulu8 ])}
+      --prefix PATH : ${lib.makeBinPath [ zulu8 ]}
   '';
 
   meta = {
