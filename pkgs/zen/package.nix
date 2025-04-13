@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   stdenvNoCC,
   fetchFromGitHub,
 }:
@@ -20,8 +19,6 @@ stdenvNoCC.mkDerivation {
     rev = "v${version}";
     hash = "sha256-s/YLFdhCrJjcqvA6HuQtP0ADjBtOqAP+arjpFM2m4oQ=";
   };
-
-  buildInputs = [ pkgs.zsh ];
 
   installPhase = ''
     runHook preInstall
