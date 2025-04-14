@@ -8,14 +8,17 @@
   outputs =
     { nixpkgs, ... }:
     let
-      forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
+      forAllSystems =
+        function:
+        nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (
+          system: function nixpkgs.legacyPackages.${system}
+        );
     in
     {
-      packages = forAllSystems (
-        system:
+      legacyPackages = forAllSystems (
+        pkgs:
         let
-          pkgs = nixpkgs.legacyPackages."${system}";
-          cypkgs = import ./default.nix { inherit pkgs; };
+          cypkgs = import ./. { inherit pkgs; };
         in
         cypkgs
         // {
