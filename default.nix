@@ -1,9 +1,5 @@
-{
-  pkgs ? import <nixpkgs> { },
-  lib ? pkgs.lib,
-  ...
-}:
+{ lib, callPackage, ... }:
 lib.packagesFromDirectoryRecursive {
-  inherit (pkgs) callPackage;
+  inherit callPackage;
   directory = ./pkgs;
 }

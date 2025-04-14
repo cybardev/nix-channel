@@ -28,5 +28,9 @@
           };
         }
       );
+
+      overlays.default = final: prev: {
+        cypkgs = final.callPackage ./. { };
+      };
     };
 }
