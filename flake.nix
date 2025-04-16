@@ -32,7 +32,7 @@
       );
 
       overlays.default = final: prev: {
-        cypkgs = final.callPackage ./. { };
+        cy = final.callPackage ./. { };
       };
     };
 }
