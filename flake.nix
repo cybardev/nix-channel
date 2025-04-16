@@ -18,7 +18,9 @@
       legacyPackages = forAllSystems (
         pkgs:
         let
-          cypkgs = import ./. { inherit pkgs; };
+          cypkgs = import ./. {
+            inherit (pkgs) lib callPackage;
+          };
         in
         cypkgs
         // {
@@ -28,5 +30,9 @@
           };
         }
       );
+
+      overlays.default = final: prev: {
+        cypkgs = final.callPackage ./. { };
+      };
     };
 }
