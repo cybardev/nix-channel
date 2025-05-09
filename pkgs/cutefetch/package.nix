@@ -18,7 +18,7 @@ stdenvNoCC.mkDerivation {
     owner = author;
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-NNU/cF895eTQtpkS47KDRcStGeR64fGzMMpNVvgmX9s=";
+    hash = "sha256-xs2vF7l+yV5+P4CA9BN2oXIXPJZc4VqYAqRQgAulx/A=";
   };
 
   nativeBuildInputs = [ pkgs.makeWrapper ];
