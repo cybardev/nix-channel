@@ -21,6 +21,7 @@ python3.pkgs.buildPythonApplication rec {
   nativeBuildInputs = with rustPlatform; [
     cargoSetupHook
     maturinBuildHook
+    bindgenHook
   ];
 
   # disable tests
@@ -30,6 +31,8 @@ python3.pkgs.buildPythonApplication rec {
     description = "A fast type checker and IDE for Python";
     homepage = "https://github.com/facebook/pyrefly";
     license = licenses.mit;
+    mainProgram = "pyrefly";
     maintainers = [];
+    platforms = lib.platforms.linux ++ lib.platforms.darwin;
   };
 }
