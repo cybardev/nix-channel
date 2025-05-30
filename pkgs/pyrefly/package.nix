@@ -1,33 +1,27 @@
 {
   lib,
-  buildPythonApplication,
+  python3,
   fetchFromGitHub,
   rustPlatform,
-  pythonOlder,
-  # maturin,
 }:
-buildPythonApplication rec {
+python3.pkgs.buildPythonApplication rec {
   pname = "pyrefly";
   version = "0.17.1";
   format = "pyproject";
 
-  disabled = pythonOlder "3.8";
+  disabled = python3.pythonOlder "3.8";
 
   src = fetchFromGitHub {
     owner = "facebook";
     repo = "pyrefly";
     rev = version;
-    hash = "";
+    hash = "sha256-aMFK4verIdijgunVmj+Ge5XZZir38PLAKWNw4mOieiM=";
   };
 
   nativeBuildInputs = with rustPlatform; [
     cargoSetupHook
     maturinBuildHook
   ];
-
-  # propagatedBuildInputs = [
-  #   maturin
-  # ];
 
   # disable tests
   doCheck = false;
