@@ -35,7 +35,6 @@ python3.pkgs.buildPythonApplication rec {
   buildAndTestSubdir = "pyrefly";
 
   nativeBuildInputs = with rustPlatform; [
-    cargoSetupHook
     maturinBuildHook
   ];
 
