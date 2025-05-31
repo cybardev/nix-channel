@@ -2,8 +2,13 @@
   lib,
   python3,
   fetchFromGitHub,
-  rustPlatform,
+  makeRustPlatform,
+  rust-bin,
 }: let
+  rustPlatform = makeRustPlatform {
+    cargo = rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
+    rustc = rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
+  };
   pname = "pyrefly";
   version = "0.17.1";
   hashes = {
@@ -26,6 +31,7 @@ in
     inherit src;
 
     postPatch = ''
+      cp ${./Cargo.lock} Cargo.lock
       cp ${./Cargo.lock} pyrefly/Cargo.lock
     '';
 
