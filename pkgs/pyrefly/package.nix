@@ -1,8 +1,9 @@
 {
   lib,
-  fetchFromGitHub,
-  makeRustPlatform,
-  rust-bin,
+  pkgs,
+  fetchFromGitHub ? pkgs.fetchFromGitHub,
+  makeRustPlatform ? pkgs.makeRustPlatform,
+  rust-bin ? pkgs.rust-bin,
 }: let
   rustPlatform = makeRustPlatform {
     cargo = rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
