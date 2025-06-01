@@ -37,6 +37,9 @@ python3.pkgs.buildPythonApplication rec {
     license = lib.licenses.mit;
     mainProgram = "pyrefly";
     platforms = lib.platforms.linux ++ lib.platforms.darwin;
-    maintainers = with lib.maintainers; [ cybardev ];
+    maintainers = with lib.maintainers; [
+      cybardev
+      QuiNzX
+    ];
   };
 }
