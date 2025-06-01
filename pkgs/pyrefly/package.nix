@@ -8,8 +8,9 @@
 python3.pkgs.buildPythonApplication rec {
   pname = "pyrefly";
   version = "0.17.1";
-  format = "pyproject";
+  pyproject = true;
 
+  # fetch from PyPI instead of GitHub, since source repo does not have Cargo.lock
   src = fetchPypi {
     inherit pname version;
     hash = "sha256-w4ivRtmApXiXQT95GI4vvYBop7yxdbbkpW+YTyFtgXM=";
