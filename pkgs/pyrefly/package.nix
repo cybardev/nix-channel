@@ -1,31 +1,27 @@
 {
   lib,
-  pkgs,
-  fetchFromGitHub ? pkgs.fetchFromGitHub,
-  makeRustPlatform ? pkgs.makeRustPlatform,
-  rust-bin ? pkgs.rust-bin,
+  fetchFromGitHub,
+  rustPlatform,
 }: let
-  rustPlatform = makeRustPlatform {
-    cargo = rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
-    rustc = rust-bin.fromRustupToolchainFile ./rust-toolchain.toml;
-  };
   pname = "pyrefly";
   version = "0.17.1";
-  src = fetchFromGitHub {
-    owner = "facebook";
-    repo = "pyrefly";
-    rev = version;
-    hash = "sha256-aMFK4verIdijgunVmj+Ge5XZZir38PLAKWNw4mOieiM=";
-  };
 in
   rustPlatform.buildRustPackage {
-    inherit pname version src;
+    inherit pname version;
+
+    src = fetchFromGitHub {
+      owner = "facebook";
+      repo = "pyrefly";
+      rev = version;
+      hash = "sha256-aMFK4verIdijgunVmj+Ge5XZZir38PLAKWNw4mOieiM=";
+    };
 
     postPatch = ''
       cp ${./Cargo.lock} Cargo.lock
       cp ${./Cargo.lock} pyrefly/Cargo.lock
     '';
 
+    buildAndTestSubdir = "pyrefly";
     cargoRoot = "pyrefly";
 
     cargoDeps = rustPlatform.importCargoLock {
@@ -36,17 +32,17 @@ in
       };
     };
 
-    nativeBuildInputs = [rustPlatform.cargoSetupHook];
+    # requires unstable rust features
+    RUSTC_BOOTSTRAP = 1;
 
-    # disable tests
-    doCheck = false;
+    nativeBuildInputs = [rustPlatform.cargoSetupHook];
 
     meta = with lib; {
       description = "A fast type checker and IDE for Python";
       homepage = "https://github.com/facebook/pyrefly";
       license = licenses.mit;
-      mainProgram = "pyrefly";
-      maintainers = [];
+      mainProgram = pname;
       platforms = lib.platforms.linux ++ lib.platforms.darwin;
+      # maintainers = with maintainers; [cybardev];
     };
   }

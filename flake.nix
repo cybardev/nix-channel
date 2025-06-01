@@ -3,24 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = {
-    nixpkgs,
-    rust-overlay,
-    ...
-  }: let
+  outputs = {nixpkgs, ...}: let
     forAllSystems = function:
       nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (
-        system:
-          function (import nixpkgs {
-            inherit system;
-            overlays = [rust-overlay.overlays.default];
-          })
+        system: function nixpkgs.legacyPackages.${system}
       );
   in {
     legacyPackages = forAllSystems (
