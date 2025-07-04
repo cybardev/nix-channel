@@ -7,17 +7,17 @@
 }:
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "pyrefly";
-  version = "0.22.0";
+  version = "0.22.2";
 
   src = fetchFromGitHub {
     owner = "facebook";
     repo = "pyrefly";
     tag = finalAttrs.version;
-    hash = "sha256-8qId9X/ImbddvitzfFWn1XvQP5bMWsKczME/gjVyKS8=";
+    hash = "sha256-oR5wV1LM+BjP7jT65kbOiL7y3Grwm7+pmt6RkD17ceY=";
   };
 
   buildAndTestSubdir = "pyrefly";
-  cargoHash = "sha256-ql66BrQlsTopzfP92+Yosjx6cWmM/9Aikza1YfKlF7U=";
+  cargoHash = "sha256-rFZZOEpKH8k3JFbyA8eKBixwuU1ehPyjFQ6kPHPqQKg=";
 
   # requires unstable rust features
   env.RUSTC_BOOTSTRAP = 1;
