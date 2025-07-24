@@ -8,7 +8,7 @@
 let
   author = "cybardev";
   pname = "ytgo";
-  version = "3.2.0";
+  version = "3.3.1";
 in
 buildGoModule {
   inherit pname;
@@ -18,7 +18,7 @@ buildGoModule {
     owner = author;
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-kIroOjeWPi6jpW/Vpd8B5batcyOaJn9PqySp9//TCm8=";
+    hash = "sha256-3dMOO3ePAjiRdJ6BKYX7WSDPQ1ja4rUTkKPSMzSdDCk=";
   };
 
   nativeBuildInputs = [ pkgs.makeWrapper ];
