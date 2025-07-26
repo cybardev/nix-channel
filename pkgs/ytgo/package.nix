@@ -18,7 +18,7 @@ buildGoModule {
     owner = author;
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-p4w8DUZqDUJaJUnkPBWmHLt2x9zr6O7rBZmsg7thKiA=";
+    hash = "sha256-UqgRSsNooI+LFJqSXKgvlsNHS4Aa9bJ8GVLtv9CRkhU=";
   };
 
   nativeBuildInputs = [ pkgs.makeWrapper ];
