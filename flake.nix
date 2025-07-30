@@ -34,5 +34,9 @@
       overlays.default = final: prev: {
         cy = final.callPackage ./. { };
       };
+
+      homeModules = {
+        ytgo-bot = ./pkgs/ytgo-bot/module.nix;
+      };
     };
 }
