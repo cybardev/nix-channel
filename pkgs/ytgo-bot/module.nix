@@ -9,17 +9,12 @@ let
 
   cfg = config.services.ytgo-bot;
 
-  botPackage = cfg.package;
+  botPackage = pkgs.callPackage ./package.nix { };
 in
 {
   options = {
     services.ytgo-bot = {
       enable = lib.mkEnableOption "ytgo-bot service for ytgo Discord bot";
-
-      package = lib.mkPackageOption pkgs.cy "ytgo-bot" {
-        default = pkgs.callPackage ./package.nix { };
-        pkgsText = "pkgs.cy";
-      };
 
       token = lib.mkOption {
         type = types.nullOr types.str;
