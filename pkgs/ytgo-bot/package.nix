@@ -33,7 +33,7 @@ let
 in
 python.pkgs.buildPythonApplication rec {
   pname = "ytgo-bot";
-  version = "1.2.0";
+  version = "1.2.1";
   pyproject = true;
   build-system = [ pythonPackages.setuptools ];
   propagatedBuildInputs = [
@@ -48,7 +48,7 @@ python.pkgs.buildPythonApplication rec {
     owner = "cybardev";
     repo = "ytgo-bot";
     tag = "v${version}";
-    hash = "sha256-I+dkd3NiSA4uH4gHvJN5x7x8oX4EBxiz57MFsDVhC9E=";
+    hash = "sha256-K+EQXZZAwsQKccTjSTYG6/b2hmxfRr1rZ2HFOUJhElc=";
   };
   meta.mainProgram = "ytgo-bot.py";
 }
