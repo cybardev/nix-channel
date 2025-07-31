@@ -35,7 +35,7 @@
         cy = final.callPackage ./. { };
       };
 
-      homeModules = {
+      modules = {
         ytgo-bot = ./pkgs/ytgo-bot/module.nix;
       };
     };
