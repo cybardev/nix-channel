@@ -15,7 +15,7 @@
         );
     in
     {
-      legacyPackages = forAllSystems (
+      packages = forAllSystems (
         pkgs:
         let
           cypkgs = import ./. {
