@@ -29,7 +29,7 @@ in
   config = mkIf cfg.enable {
     home.packages = [ botPackage ];
 
-    systemd.user.services.ollama = mkIf pkgs.stdenv.isLinux {
+    systemd.user.services.ytgo-bot = mkIf pkgs.stdenv.isLinux {
       Unit = {
         Description = "Service for ytgo Discord bot";
         After = [ "network.target" ];
@@ -45,7 +45,7 @@ in
       };
     };
 
-    launchd.agents.ollama = mkIf pkgs.stdenv.isDarwin {
+    launchd.agents.ytgo-bot = mkIf pkgs.stdenv.isDarwin {
       enable = true;
       config = {
         ProgramArguments = [ (lib.getExe botPackage) ];
