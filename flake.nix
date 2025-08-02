@@ -10,7 +10,7 @@
     let
       forAllSystems =
         function:
-        nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (
+        nixpkgs.lib.genAttrs [ "x86_64-linux" "aarch64-darwin" ] (
           system: function nixpkgs.legacyPackages.${system}
         );
     in
