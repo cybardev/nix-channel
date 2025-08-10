@@ -8,7 +8,7 @@
 let
   author = "cybardev";
   pname = "cutefetch";
-  version = "3.0.1";
+  version = "3.1.0";
 in
 stdenvNoCC.mkDerivation {
   inherit pname;
@@ -18,7 +18,7 @@ stdenvNoCC.mkDerivation {
     owner = author;
     repo = pname;
     rev = "v${version}";
-    hash = "sha256-xs2vF7l+yV5+P4CA9BN2oXIXPJZc4VqYAqRQgAulx/A=";
+    hash = "sha256-NKc0q+1x8PBA/X1QQHAscujweIdDxQKBMnGthSZ17YI=";
   };
 
   nativeBuildInputs = [ pkgs.makeWrapper ];
