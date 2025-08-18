@@ -9,7 +9,7 @@ let
 
   cfg = config.services.ytgo-bot;
 
-  botPackage = pkgs.callPackage ../../pkgs/ytgo-bot/package.nix { };
+  botPackage = pkgs.callPackage ../../pkg/ytgo-bot/package.nix { };
 in
 {
   options = {

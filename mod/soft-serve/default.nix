@@ -33,7 +33,7 @@ in
     };
   };
   config = mkIf cfg.enable {
-    home.packages = [ cfg.soft-serve ];
+    home.packages = [ cfg.package ];
     home.sessionVariables = cfg.environmentVariables;
 
     systemd.user.services.soft-serve = mkIf pkgs.stdenv.isLinux {
@@ -45,7 +45,7 @@ in
         Type = "simple";
         Restart = "always";
         RestartSec = 1;
-        ExecStart = "${lib.getExe cfg.soft-serve} serve";
+        ExecStart = "${lib.getExe cfg.package} serve";
         Environment = lib.mapAttrsToList (k: v: "${k}=${v}") cfg.environmentVariables;
       };
       Install = {
@@ -57,7 +57,7 @@ in
       enable = true;
       config = {
         ProgramArguments = [
-          (lib.getExe cfg.soft-serve)
+          (lib.getExe cfg.package)
           "serve"
         ];
         EnvironmentVariables = cfg.environmentVariables;
