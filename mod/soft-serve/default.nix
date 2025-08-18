@@ -42,7 +42,10 @@ in
         After = [ "network.target" ];
       };
       Service = {
-        ExecStart = lib.getExe cfg.soft-serve;
+        Type = "simple";
+        Restart = "always";
+        RestartSec = 1;
+        ExecStart = "${lib.getExe cfg.soft-serve} serve";
         Environment = lib.mapAttrsToList (k: v: "${k}=${v}") cfg.environmentVariables;
       };
       Install = {
@@ -53,7 +56,10 @@ in
     launchd.agents.soft-serve = mkIf pkgs.stdenv.isDarwin {
       enable = true;
       config = {
-        ProgramArguments = [ (lib.getExe cfg.soft-serve) ];
+        ProgramArguments = [
+          (lib.getExe cfg.soft-serve)
+          "serve"
+        ];
         EnvironmentVariables = cfg.environmentVariables;
         KeepAlive = {
           Crashed = true;

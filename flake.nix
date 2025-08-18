@@ -18,7 +18,7 @@
       packages = forAllSystems (
         pkgs:
         let
-          cypkgs = import ./. {
+          cypkgs = import ./default.nix {
             inherit (pkgs) lib callPackage;
           };
         in
@@ -32,12 +32,12 @@
       );
 
       overlays.default = final: prev: {
-        cy = final.callPackage ./. { };
+        cy = final.callPackage ./default.nix { };
       };
 
       modules = {
-        soft-serve = ./pkgs/soft-serve/module.nix;
-        ytgo-bot = ./pkgs/ytgo-bot/module.nix;
+        soft-serve = ./mod/soft-serve;
+        ytgo-bot = ./mod/ytgo-bot;
       };
     };
 }

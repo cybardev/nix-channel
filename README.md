@@ -1,9 +1,9 @@
 # nix-channel
 
-A Nix channel for my packages
+A Nix channel for my packages and modules
 
 > [!NOTE]
-> See [`pkgs/`](./pkgs) for list of available packages.
+> See [`pkg/`](./pkg) for list of available packages, and [`mod/`](./mod) for list of available modules.
 
 ## Usage
 
