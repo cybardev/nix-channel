@@ -36,6 +36,7 @@
       };
 
       modules = {
+        soft-serve = ./pkgs/soft-serve/module.nix;
         ytgo-bot = ./pkgs/ytgo-bot/module.nix;
       };
     };
