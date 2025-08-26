@@ -36,6 +36,7 @@
       };
 
       modules = {
+        opencode = ./mod/opencode;
         soft-serve = ./mod/soft-serve;
         ytgo-bot = ./mod/ytgo-bot;
       };
