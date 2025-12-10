@@ -39,6 +39,7 @@
         opencode = ./mod/opencode;
         soft-serve = ./mod/soft-serve;
         ytgo-bot = ./mod/ytgo-bot;
+        git-xet = ./mod/git-xet;
         searxng = ./mod/searxng;
         tenere = ./mod/tenere;
       };
