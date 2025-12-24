@@ -42,6 +42,7 @@
         git-xet = ./mod/git-xet;
         searxng = ./mod/searxng;
         tenere = ./mod/tenere;
+        rift = ./mod/rift;
       };
     };
 }
