@@ -36,7 +36,7 @@
       };
 
       modules = {
-        opencode = ./mod/opencode;
+        pi-coding-agent = ./mod/pi-coding-agent;
         soft-serve = ./mod/soft-serve;
         ytgo-bot = ./mod/ytgo-bot;
         git-xet = ./mod/git-xet;
