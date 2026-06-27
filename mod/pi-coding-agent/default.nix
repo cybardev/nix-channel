@@ -16,6 +16,36 @@ in
 
       package = lib.mkPackageOption pkgs "pi-coding-agent" { };
 
+      settings = mkOption {
+        type = types.attrs;
+        default = { };
+        example = lib.literalExpression ''
+          {
+            defaultProvider = "anthropic";
+            defaultModel = "claude-sonnet-4-20250514";
+            defaultThinkingLevel = "medium";
+            theme = "dark";
+            compaction = {
+              enabled = true;
+              reserveTokens = 16384;
+              keepRecentTokens = 20000;
+            };
+            retry = {
+              enabled = true;
+              maxRetries = 3;
+            };
+            enabledModels = [ "claude-*" "gpt-4o" ];
+            warnings.anthropicExtraUsage = true;
+            packages = [ "pi-skills" ];
+          }
+        '';
+        description = ''
+          Settings for pi. Saved to `~/.pi/agent/settings.json`.
+
+          See available options: https://pi.dev/docs/latest/settings
+        '';
+      };
+
       models = mkOption {
         type = types.attrs;
         default = { };
@@ -40,7 +70,7 @@ in
           }
         '';
         description = ''
-          Configuration for pi. Saved to `~/.pi/agent/models.json`.
+          Model configuration for pi. Saved to `~/.pi/agent/models.json`.
 
           See available options: https://pi.dev/docs/latest/models
         '';
@@ -64,6 +94,7 @@ in
       packages = [ cfg.package ];
       file = {
         ".pi/agent/AGENTS.md".source = mkIf (cfg.instructions != null) cfg.instructions;
+        ".pi/agent/settings.json".text = lib.toJSON cfg.settings;
         ".pi/agent/models.json".text = lib.toJSON cfg.models;
       };
     };
