@@ -4,7 +4,6 @@
   stdenvNoCC,
   fetchFromGitHub,
 }:
-
 let
   author = "cybardev";
   pname = "cutefetch";
@@ -38,8 +37,8 @@ stdenvNoCC.mkDerivation {
           [ ]
           ++ lib.optionals pkgs.stdenvNoCC.hostPlatform.isLinux [
             networkmanager
-            xorg.xprop
-            xorg.xdpyinfo
+            xprop
+            xdpyinfo
           ]
         )
       }
