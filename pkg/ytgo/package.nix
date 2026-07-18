@@ -40,7 +40,7 @@ buildGoModule {
         lib.makeBinPath [
           ffmpeg
           yt-dlp
-          mpv
+          # mpv # FIXME: fails build on Darwin
         ]
       }
   '';
