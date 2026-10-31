@@ -13,7 +13,7 @@ in
     services.rift = {
       enable = lib.mkEnableOption "tiling window manager for macos";
 
-      package = lib.mkPackageOption pkgs "rift" { };
+      package = lib.mkPackageOption pkgs "rift-wm" { };
 
       config = lib.mkOption {
         type =
