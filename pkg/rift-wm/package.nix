@@ -8,26 +8,19 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rift-wm";
-  version = "0.7.2";
+  version = "0.8.0";
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "acsandmann";
     repo = "rift";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-LXht4AfIBiSeS5jRZiadNBFBtpvZkB9bPRF/svXLqbc=";
+    hash = "sha256-iGz3QRU3t0nNEvtZ/i/9LmUncCEyKWy14MkkuZVb4hQ=";
   };
 
-  nativeBuildInputs = [
-    apple-sdk
-  ];
+  nativeBuildInputs = [ apple-sdk ];
 
-  cargoHash = "sha256-ZyRcaoNOkUKMqS77tz5ijmJR8lyAujPSpkVNbQ+6/Jo=";
-  checkFlags = [
-    # runs into: a transient empty active-space WS-id result after wake must not blank windows we already know belong to the active space
-    "--skip=actor::reactor::tests::empty_active_space_membership_during_wake_race_does_not_blank_known_active_windows"
-    "--skip=actor::reactor::tests::named_pin_reload_moves_immediately_without_growing_catalog"
-  ];
+  cargoHash = "sha256-lhOc53eMJIpdO8iPylcN6I9N5WwMTT6XhaZwh4jD6So=";
 
   passthru.updateScript = nix-update-script { };
 
