@@ -1,61 +1,53 @@
 {
   lib,
-  pkgs,
   stdenvNoCC,
   fetchFromGitHub,
+  stripJavaArchivesHook,
+  makeWrapper,
+  jre8_headless,
+  ant,
 }:
-
-let
-  author = "TASEmulators";
-  pname = "freej2me";
-  repo = "${pname}-plus";
-  version = "0.0.1";
-in
 stdenvNoCC.mkDerivation {
-  inherit pname;
-  inherit version;
+  pname = "freej2me";
+  version = "1.52-unstable-2026-11-11";
 
   src = fetchFromGitHub {
-    owner = author;
-    repo = repo;
-    rev = "913e2d504452732754b9e2f3d42713c90dbf511a";
-    hash = "sha256-7QeS2wRimbfoorMmJdWZdPB4kdS8+22nI/PlmgTMXqk=";
+    owner = "TASEmulators";
+    repo = "freej2me-plus";
+    rev = "5cf0879f460580cc39a52e6b251bcba6cda39530";
+    hash = "sha256-XTEi3yvg0hRoiRgXq8aOthUBzJ5uRR8I8i1Z0FdbvPc=";
   };
 
-  nativeBuildInputs = with pkgs; [
-    makeWrapper
+  nativeBuildInputs = [
     ant
-  ];
-
-  buildInputs = with pkgs; [
-    zulu8
+    makeWrapper
+    jre8_headless
+    stripJavaArchivesHook
   ];
 
   buildPhase = ''
     runHook preBuild
-    ant -noinput -buildfile build.xml
+    ant
     runHook postBuild
   '';
 
   installPhase = ''
     runHook preInstall
+    install -Dm644 "build/freej2me_plus.jar" "$out/share/java/freej2me_plus.jar"
     mkdir -p "$out/bin"
-    cp "build/${pname}.jar" "$out/bin/"
-    echo "java -jar $out/bin/${pname}.jar" > "$out/bin/${pname}"
-    chmod +x "$out/bin/${pname}"
+    makeWrapper ${lib.getExe' jre8_headless "java"} $out/bin/freej2me \
+      --add-flags "-jar $out/share/java/freej2me_plus.jar"
     runHook postInstall
   '';
 
-  postInstall = with pkgs; ''
-    wrapProgram "$out/bin/${pname}" \
-      --prefix PATH : ${lib.makeBinPath [ zulu8 ]}
-  '';
-
   meta = {
-    description = "A free J2ME emulator with libretro, awt and sdl2 frontends.";
-    homepage = "https://github.com/${author}/${repo}";
-    license = lib.licenses.unfreeRedistributable;
-    mainProgram = pname;
+    description = "Free J2ME emulator with libretro, awt and sdl2 frontends";
+    homepage = "https://github.com/TASEmulators/freej2me-plus";
+    license = lib.licenses.gpl3Only;
     platforms = lib.platforms.all;
+    mainProgram = "freej2me";
+    maintainers = with lib.maintainers; [
+      cybardev
+    ];
   };
 }
