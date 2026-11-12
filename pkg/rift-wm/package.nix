@@ -8,35 +8,28 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rift-wm";
-  version = "0.7.2";
+  version = "0.8.1-unstable-2026-11-11";
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "acsandmann";
     repo = "rift";
-    tag = "v${finalAttrs.version}";
-    hash = "sha256-LXht4AfIBiSeS5jRZiadNBFBtpvZkB9bPRF/svXLqbc=";
+    rev = "c4551653f0e46b59538c7faac4432ef7392ac0dc";
+    hash = "sha256-ootKxOaSNqq2MX9PGz9CXst00cEvKBeVJOM9Y9XhLqU=";
   };
 
   nativeBuildInputs = [
     apple-sdk
   ];
 
-  cargoHash = "sha256-ZyRcaoNOkUKMqS77tz5ijmJR8lyAujPSpkVNbQ+6/Jo=";
-  checkFlags = [
-    # runs into: a transient empty active-space WS-id result after wake must not blank windows we already know belong to the active space
-    "--skip=actor::reactor::tests::empty_active_space_membership_during_wake_race_does_not_blank_known_active_windows"
-
-    # runs into: reloading a named pin must prepare the native move before any workspace switch
-    "--skip=actor::reactor::tests::named_pin_reload_moves_immediately_without_growing_catalog"
-  ];
+  cargoHash = "sha256-AgHR8thBePobjqe2r4H53m6W0b6GEI5V7BK+gjDdU9A=";
 
   passthru.updateScript = nix-update-script { };
 
   meta = {
     description = "Tiling window manager for macos";
     homepage = "https://github.com/acsandmann/rift";
-    changelog = "https://github.com/acsandmann/rift/releases/tag/${finalAttrs.src.tag}";
+    changelog = "https://github.com/acsandmann/rift/commits/${finalAttrs.src.rev}";
     license = lib.licenses.asl20;
     maintainers = with lib.maintainers; [
       eveeifyeve
