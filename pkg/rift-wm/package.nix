@@ -8,21 +8,21 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "rift-wm";
-  version = "0.8.1-unstable-2026-11-11";
+  version = "0.8.2";
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "acsandmann";
     repo = "rift";
-    rev = "c4551653f0e46b59538c7faac4432ef7392ac0dc";
-    hash = "sha256-ootKxOaSNqq2MX9PGz9CXst00cEvKBeVJOM9Y9XhLqU=";
+    tag = "v${finalAttrs.version}";
+    hash = "sha256-cLFGVkPF7qGgC4QIyEc8b9rZ0LB8PoH7golgwT59ZRA=";
   };
 
   nativeBuildInputs = [
     apple-sdk
   ];
 
-  cargoHash = "sha256-AgHR8thBePobjqe2r4H53m6W0b6GEI5V7BK+gjDdU9A=";
+  cargoHash = "sha256-XFn/DXOimu4gkgOXKDgZ/RBVxida7mvq1+lMx0Wrt/4=";
 
   passthru.updateScript = nix-update-script { };
 
